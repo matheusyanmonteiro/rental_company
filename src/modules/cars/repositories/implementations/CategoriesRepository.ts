@@ -1,10 +1,9 @@
 import { getRepository, Repository } from 'typeorm';
 import { Category } from '../../entities/Category';
-import { Specification } from '../../entities/Specification';
 
 import { ICreateCategoryDTO, ICategoriesRepository } from "../ICategoriesRepository";
 
-// paulo to com problema de Category  types 
+
 
 class CategoriesRepository implements ICategoriesRepository {
   private repository: Repository<Category>;
