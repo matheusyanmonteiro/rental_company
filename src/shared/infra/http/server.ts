@@ -4,13 +4,14 @@ import express, { NextFunction, Request, Response } from 'express';
 import swaggerUi from 'swagger-ui-express';
 
 import { router } from './routes';
-import swaggerFile from './swagger.json';
+import swaggerFile from '../../../swagger.json';
 
 //database
-import "./database";
+import "@shared/infra/typeorm";
 //dependency injection
-import "./shared/container";
-import { AppError } from "./errors/AppError";
+import "@shared/container";
+import { AppError } from "@shared/errors/AppError";
+
 
 
 //instance of express
