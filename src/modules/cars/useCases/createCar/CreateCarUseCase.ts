@@ -13,14 +13,14 @@ interface IRequest {
   category_id: string;
 }
 
-//@injectable()
+@injectable()
 class CreateCarUseCase {
   constructor(
-    //@inject("CarsRepository")
+    @inject("CarsRepository")
     private carsRepository: ICarsRepository
   ) {}
 
-  async execute({
+  async execute({ 
     name,
     description,
     daily_rate,
@@ -30,11 +30,11 @@ class CreateCarUseCase {
     category_id
   }: IRequest): Promise<Car> {
     const carAlreadyExists = await this.carsRepository.findByLicensePlate(license_plate);
-
+    console.log("name")
+    console.log(name)
     if (carAlreadyExists) {
       throw new AppError("Car Already Exists!", 406)
     }
-
     const car = await this.carsRepository.create({
       name,
       description,
@@ -44,6 +44,7 @@ class CreateCarUseCase {
       brand,
       category_id
     });
+    console.log(car)
 
     return car;
   }
