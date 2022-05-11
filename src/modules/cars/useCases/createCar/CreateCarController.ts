@@ -5,7 +5,7 @@ import { CreateCarUseCase } from "./CreateCarUseCase";
 class CreateCarController {
 
   async handle(request: Request, response: Response): Promise<Response> {
-    console.log("dentro do controller");
+    
     const {
       name,
       daily_rate,
@@ -16,7 +16,7 @@ class CreateCarController {
       description,
     } = request.body;
 
-    console.log(name)
+    
 
     const createCarUseCase = container.resolve(CreateCarUseCase);
     
@@ -30,8 +30,7 @@ class CreateCarController {
       fine_amount,
       license_plate
     });
-    console.log("fora do const")
-    console.log(car);
+   
 
      return response.status(201).json(car);
   }

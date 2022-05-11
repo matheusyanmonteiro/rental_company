@@ -30,8 +30,7 @@ class CreateCarUseCase {
     category_id
   }: IRequest): Promise<Car> {
     const carAlreadyExists = await this.carsRepository.findByLicensePlate(license_plate);
-    console.log("name")
-    console.log(name)
+    
     if (carAlreadyExists) {
       throw new AppError("Car Already Exists!", 406)
     }
@@ -44,7 +43,7 @@ class CreateCarUseCase {
       brand,
       category_id
     });
-    console.log(car)
+   
 
     return car;
   }
