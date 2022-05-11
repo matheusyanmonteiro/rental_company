@@ -2,7 +2,7 @@ import { Column, CreateDateColumn, Entity, JoinColumn, ManyToOne, PrimaryColumn 
 import { v4 as uuidV4 } from "uuid"
 import { Category } from "./Category";
 
-@Entity()
+@Entity('cars')
 class Car {
   @PrimaryColumn()
   id: string;
