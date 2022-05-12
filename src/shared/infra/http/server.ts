@@ -7,13 +7,15 @@ import { router } from './routes';
 import swaggerFile from '../../../swagger.json';
 
 //database
-import "@shared/infra/typeorm";
+//import "@shared/infra/typeorm";
+import createConnection from "@shared/infra/typeorm"
 //dependency injection
 import "@shared/container";
 import { AppError } from "@shared/errors/AppError";
 
 
 
+createConnection();
 //instance of express
 const app = express();
 //express
@@ -39,4 +41,4 @@ app.use(
 })
 
 //localhost listen 
-app.listen(3333, () => console.log("Server is running!"));
+app.listen(3334, () => console.log("Server is running!"));
