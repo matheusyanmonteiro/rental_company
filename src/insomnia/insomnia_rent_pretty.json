@@ -1,7 +1,7 @@
 {
   "_type": "export",
   "__export_format": 4,
-  "__export_date": "2022-05-13T18:50:52.292Z",
+  "__export_date": "2022-05-13T20:30:14.727Z",
   "__export_source": "insomnia.desktop.app:v2022.3.0",
   "resources": [
     {
@@ -301,7 +301,7 @@
     {
       "_id": "req_c320c1f02c1248b6941ee18648152503",
       "parentId": "fld_ecff9401e69d46dfb96ad419db2c5201",
-      "modified": 1652467236910,
+      "modified": 1652473683495,
       "created": 1652465496270,
       "url": "{{ _.DEVELOPURL }}/specifications",
       "name": "Create specification",
@@ -309,7 +309,7 @@
       "method": "POST",
       "body": {
         "mimeType": "application/json",
-        "text": "{\n\t\"name\": \"airbag\",\n\t\"description\": \"this is for safety\"\n}"
+        "text": "{\n\t\"name\": \"Seat belt\",\n\t\"description\": \"this is for safety\"\n}"
       },
       "parameters": [],
       "headers": [
@@ -343,6 +343,53 @@
       "environment": {},
       "environmentPropertyOrder": null,
       "metaSortKey": -1652465280464,
+      "_type": "request_group"
+    },
+    {
+      "_id": "req_7dfa9c1f27ca49a59222c69787c53bc4",
+      "parentId": "fld_f4690ff73def4812be8bed6db6839e89",
+      "modified": 1652473766252,
+      "created": 1652473558055,
+      "url": "{{ _.DEVELOPURL }}/cars/specifications/4f48c2be-aef7-4db3-8977-9e3b661a2efc",
+      "name": "Create Specification for a car",
+      "description": "",
+      "method": "POST",
+      "body": {
+        "mimeType": "application/json",
+        "text": "{\n\t\"specifications_id\": [\n\t\t\"81be3cdf-00eb-4e2f-8eae-30f663704966\",\n\t\t\"8cc45574-abe0-46c9-8b2b-193db3e743e1\"\n\t]\n}"
+      },
+      "parameters": [],
+      "headers": [
+        {
+          "name": "Content-Type",
+          "value": "application/json",
+          "id": "pair_3121d35ef69248b78e1a053cc344687c"
+        }
+      ],
+      "authentication": {
+        "type": "bearer",
+        "token": "{{ _.tokenAdmin }}"
+      },
+      "metaSortKey": -1652473558055,
+      "isPrivate": false,
+      "settingStoreCookies": true,
+      "settingSendCookies": true,
+      "settingDisableRenderRequestBody": false,
+      "settingEncodeUrl": true,
+      "settingRebuildPath": true,
+      "settingFollowRedirects": "global",
+      "_type": "request"
+    },
+    {
+      "_id": "fld_f4690ff73def4812be8bed6db6839e89",
+      "parentId": "wrk_0913170602c64e2ebfed9664c9f085b8",
+      "modified": 1652465263553,
+      "created": 1652465263553,
+      "name": "cars",
+      "description": "",
+      "environment": {},
+      "environmentPropertyOrder": null,
+      "metaSortKey": -1652465263553,
       "_type": "request_group"
     },
     {
@@ -404,18 +451,6 @@
       "settingRebuildPath": true,
       "settingFollowRedirects": "global",
       "_type": "request"
-    },
-    {
-      "_id": "fld_f4690ff73def4812be8bed6db6839e89",
-      "parentId": "wrk_0913170602c64e2ebfed9664c9f085b8",
-      "modified": 1652465263553,
-      "created": 1652465263553,
-      "name": "cars",
-      "description": "",
-      "environment": {},
-      "environmentPropertyOrder": null,
-      "metaSortKey": -1652465263553,
-      "_type": "request_group"
     },
     {
       "_id": "req_20d5b0a62f2342778dc60ca78e5884fc",
