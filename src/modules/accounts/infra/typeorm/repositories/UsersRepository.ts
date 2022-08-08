@@ -1,6 +1,7 @@
 import { ICreateUserDTO } from "@modules/accounts/dtos/ICreateUserDTO";
 import { IUsersRepository } from "@modules/accounts/repositories/IUsersRepository";
 import { getRepository, Repository } from "typeorm";
+
 import { User } from "../entities/User";
 
 class UsersRepository implements IUsersRepository {
@@ -27,7 +28,6 @@ class UsersRepository implements IUsersRepository {
       id,
     });
     await this.repository.save(user);
-
   }
 
   async findByEmail(email: string): Promise<User> {
