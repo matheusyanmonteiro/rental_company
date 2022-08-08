@@ -1,5 +1,6 @@
 import { ICreateCarDTO } from "@modules/cars/dtos/ICreateCarDTO";
 import { Car } from "@modules/cars/infra/typeorm/entities/Car";
+
 import { ICarsRepository } from "../ICarsRepository";
 
 class CarsRepositoryInMemory implements ICarsRepository {
@@ -42,21 +43,18 @@ class CarsRepositoryInMemory implements ICarsRepository {
     category_id?: string,
     name?: string
   ): Promise<Car[]> {
-    const cars = this.cars
-      .filter((car) => {
-        if (
-          car.available === true ||
-          (
-            (brand && car.brand === brand) || 
-            (category_id && car.category_id === category_id) ||
-            (name && car.name === name)
-          )
-        ) {
-          return car;
-        }
-        return null;
+    const cars = this.cars.filter((car) => {
+      if (
+        car.available === true ||
+        (brand && car.brand === brand) ||
+        (category_id && car.category_id === category_id) ||
+        (name && car.name === name)
+      ) {
+        return car;
+      }
+      return null;
     });
-      
+
     return cars;
   }
 
@@ -65,11 +63,10 @@ class CarsRepositoryInMemory implements ICarsRepository {
   }
 
   async updateAvailable(id: string, available: boolean): Promise<void> {
-    const findIndex = this.cars.findIndex(car => car.id === id);
+    const findIndex = this.cars.findIndex((car) => car.id === id);
 
     this.cars[findIndex].available = available;
   }
- 
 }
 
-export { CarsRepositoryInMemory }
+export { CarsRepositoryInMemory };

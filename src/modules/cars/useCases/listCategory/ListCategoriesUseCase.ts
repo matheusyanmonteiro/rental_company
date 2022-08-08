@@ -3,14 +3,13 @@ import { ICategoriesRepository } from "@modules/cars/repositories/ICategoriesRep
 import { inject, injectable } from "tsyringe";
 
 @injectable()
-class ListCategoriesUseCase
-{
+class ListCategoriesUseCase {
   constructor(
     @inject("CategoriesRepository")
-    private categoriesRepository: ICategoriesRepository){}
+    private categoriesRepository: ICategoriesRepository
+  ) {}
 
-  async execute() : Promise<Category[]>
-  {
+  async execute(): Promise<Category[]> {
     const categories = await this.categoriesRepository.list();
 
     return categories;

@@ -1,11 +1,10 @@
-
+import { ICarsRepository } from "@modules/cars/repositories/ICarsRepository";
 import { Rental } from "@modules/rentals/infra/typeorm/entities/Rental";
 import { IRentalsRepository } from "@modules/rentals/repositories/IRentalsRepository";
-import { AppError } from "@shared/errors/AppError";
-import { IDateProvider } from "@shared/container/providers/DateProvider/IDateProvider";
 import { inject, injectable } from "tsyringe";
-import { ICarsRepository } from "@modules/cars/repositories/ICarsRepository";
 
+import { IDateProvider } from "@shared/container/providers/DateProvider/IDateProvider";
+import { AppError } from "@shared/errors/AppError";
 
 interface IRequest {
   user_id: string;
@@ -16,11 +15,11 @@ interface IRequest {
 @injectable()
 class CreateRentalUseCase {
   constructor(
-    @inject('RentalsRepository')
+    @inject("RentalsRepository")
     private rentalsRepository: IRentalsRepository,
-    @inject('DayjsDateProvider')
+    @inject("DayjsDateProvider")
     private dateProvider: IDateProvider,
-    @inject('CarsRepository')
+    @inject("CarsRepository")
     private carsRepository: ICarsRepository
   ) {}
 
@@ -31,13 +30,17 @@ class CreateRentalUseCase {
   }: IRequest): Promise<Rental> {
     const minimumHours = 24;
 
-    const carUnAvailable = await this.rentalsRepository.findOpenRentalByCar(car_id);
+    const carUnAvailable = await this.rentalsRepository.findOpenRentalByCar(
+      car_id
+    );
 
     if (carUnAvailable) {
-      throw new AppError("Car is unavailable", 400)
+      throw new AppError("Car is unavailable", 400);
     }
 
-    const rentalOpenToUser = await this.rentalsRepository.findOpenRentalByUser(user_id);
+    const rentalOpenToUser = await this.rentalsRepository.findOpenRentalByUser(
+      user_id
+    );
 
     if (rentalOpenToUser) {
       throw new AppError("There's a rental in progress for user!");
@@ -52,7 +55,7 @@ class CreateRentalUseCase {
 
     if (compare < minimumHours) {
       throw new AppError("invalid return time", 406);
-    } 
+    }
 
     const rental = await this.rentalsRepository.create({
       user_id,
@@ -61,9 +64,9 @@ class CreateRentalUseCase {
     });
 
     await this.carsRepository.updateAvailable(car_id, false);
-    
+
     return rental;
   }
 }
 
-export { CreateRentalUseCase }
+export { CreateRentalUseCase };
