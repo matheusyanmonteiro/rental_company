@@ -27,19 +27,24 @@ class UsersTokensRepository implements IUsersTokensRepository {
     return userToken;
   }
 
-  findByUserIdAndRefreshToken(
+  async findByUserIdAndRefreshToken(
     user_id: string,
     refresh_token: string
-  ): Promise<void> {
-    throw new Error("Method not implemented.");
+  ): Promise<UserTokens> {
+    const usersTokens = await this.repository.findOne({
+      user_id,
+      refresh_token,
+    });
+    return usersTokens;
   }
 
-  deleteById(id: string): Promise<void> {
-    throw new Error("Method not implemented.");
+  async deleteById(id: string): Promise<void> {
+    await this.repository.delete(id);
   }
 
-  findByRefreshToken(refresh_token: string): Promise<UserTokens> {
-    throw new Error("Method not implemented.");
+  async findByRefreshToken(refresh_token: string): Promise<UserTokens> {
+    const userToken = await this.repository.findOne({ refresh_token });
+    return userToken;
   }
 }
 
