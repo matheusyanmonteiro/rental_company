@@ -38,7 +38,7 @@ class SendForgotPasswordUseCase {
 
     const token = uuidV4();
 
-    const expires_date = this.dateProvider.addDays(3);
+    const expires_date = this.dateProvider.addHours(3);
 
     await this.usersTokensRepository.create({
       refresh_token: token,
