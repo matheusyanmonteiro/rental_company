@@ -1,20 +1,21 @@
 import { IUsersRepository } from "@modules/accounts/repositories/IUsersRepository";
 import { IUsersTokensRepository } from "@modules/accounts/repositories/IUsersTokensRepository";
 import { resolve } from "path";
-import { inject } from "tsyringe";
+import { inject, injectable } from "tsyringe";
 import { v4 as uuidV4 } from "uuid";
 
 import { IDateProvider } from "@shared/container/providers/DateProvider/IDateProvider";
 import { IMailProvider } from "@shared/container/providers/MailProvider/IMailProvider";
 import { AppError } from "@shared/errors/AppError";
 
+@injectable()
 class SendForgotPasswordUseCase {
   constructor(
     @inject("UsersRepository")
     private usersRepository: IUsersRepository,
     @inject("UsersTokensRepository")
     private usersTokensRepository: IUsersTokensRepository,
-    @inject("DaysjsDateProvider")
+    @inject("DayjsDateProvider")
     private dateProvider: IDateProvider,
     @inject("EtherealMailProvider")
     private mailProvider: IMailProvider
