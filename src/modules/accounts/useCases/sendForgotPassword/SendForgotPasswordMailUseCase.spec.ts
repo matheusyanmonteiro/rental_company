@@ -28,7 +28,7 @@ describe("Send Forgot Password Mail", () => {
     );
   });
 
-  it.skip("Should be able to send a forgot password mail to user", async () => {
+  it("Should be able to send a forgot password mail to user", async () => {
     const sendMail = spyOn(mailProvider, "sendMail");
 
     await usersRepositoryInMemory.create({
@@ -38,7 +38,7 @@ describe("Send Forgot Password Mail", () => {
       password: "1234",
     });
 
-    await sendForgotPasswordMailUseCase.execute("ok.boti.im");
+    await sendForgotPasswordMailUseCase.execute("ok@boti.im");
 
     expect(sendMail).toHaveBeenCalled();
   });
